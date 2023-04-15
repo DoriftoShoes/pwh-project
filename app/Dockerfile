@@ -1,7 +1,7 @@
 FROM python:3.9
 RUN mkdir /code
 WORKDIR /code
-ADD src/* /code/
+ADD main/* /code/
 
 RUN apt-get update && \
     apt-get install -y
