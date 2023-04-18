@@ -1,4 +1,61 @@
+provider "helm" {
+  kubernetes {
+    host                   = module.eks.cluster_endpoint
+    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+    exec {
+      api_version = "client.authentication.k8s.io/v1"
+      args        = ["eks", "get-token", "--cluster-name", var.cluster_name]
+      command     = "aws"
+    }
+  }
+}
+
+resource "helm_release" "alb_ingress" {
+  depends_on = [
+    module.eks
+  ]
+  name       = "aws-alb-ingress-controller"
+  repository = "https://aws.github.io/eks-charts"
+  chart      = "aws-load-balancer-controller"
+  version    = "1.5.1"
+  namespace          = "aws-alb-ingress"
+  create_namespace   = true
+
+  set {
+    name  = "clusterName"
+    value = var.cluster_name
+  }
+
+  set {
+    name  = "rbac.create"
+    value = "true"
+  }
+
+  set {
+    name  = "rbac.serviceAccount.create"
+    value = "true"
+  }
+
+  set {
+    name  = "rbac.serviceAccountAnnotations.eks\\.amazonaws\\.com/role-arn"
+    value = aws_iam_role.alb_ingress.arn
+  }
+
+  set {
+    name = "awsRegion"
+    value = var.region
+  }
+
+  set {
+    name = "awsVpcID"
+    value = module.vpc.vpc_id
+  }
+}
+
 resource "kubernetes_namespace" "project" {
+  depends_on = [
+    module.eks
+  ]
   metadata {
     name = var.cluster_name
   }
@@ -54,6 +111,9 @@ resource "kubernetes_deployment" "project" {
 }
 
 resource "kubernetes_service" "project" {
+  depends_on = [
+    module.eks
+  ]
   metadata {
     namespace = kubernetes_namespace.project.metadata.0.name
     name = var.cluster_name
@@ -73,17 +133,21 @@ resource "kubernetes_service" "project" {
 }
 
 resource "kubernetes_ingress_v1" "project" {
+    depends_on = [
+      helm_release.alb_ingress
+    ]
   metadata {
     namespace = kubernetes_namespace.project.metadata.0.name
     name = var.cluster_name
     annotations = {
-        "kubernetes.io/ingress.class" = "alb"
+        #"kubernetes.io/ingress.class" = "alb"
         "alb.ingress.kubernetes.io/scheme" = "internet-facing"
         "alb.ingress.kubernetes.io/target-type" = "ip"
     }
   }
 
   spec {
+    ingress_class_name = "alb"
     default_backend {
       service {
         name = var.cluster_name

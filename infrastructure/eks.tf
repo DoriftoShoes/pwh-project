@@ -18,6 +18,9 @@ module "eks" {
     main = {
       name = "main"
 
+      # Hack to get elasticloadbalancing:DescribeLoadBalancers
+      iam_role_additional_policies = {1: "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess", 2: "arn:aws:iam::aws:policy/AmazonVPCReadOnlyAccess"}
+
       instance_types = var.main_instance_types
 
       min_size     = var.main_size.min
