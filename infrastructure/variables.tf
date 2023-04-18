@@ -54,3 +54,7 @@ variable "main_size" {
         desired = 1
     }
 }
+
+variable "project_image" {
+    description = "Container image for deployment"
+}

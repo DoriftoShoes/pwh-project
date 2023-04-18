@@ -8,3 +8,5 @@ cluster_name = "pwh-project"
 cluster_version = "1.25"
 main_instance_types = ["t3.medium"]
 main_size = {min = 1, max = 1, desired = 1}
+
+project_image = "610214208494.dkr.ecr.us-west-2.amazonaws.com/pwh-project:latest"
