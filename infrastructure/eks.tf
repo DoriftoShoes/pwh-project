@@ -11,7 +11,6 @@ module "eks" {
 
   eks_managed_node_group_defaults = {
     ami_type = "AL2_x86_64"
-
   }
 
   eks_managed_node_groups = {
@@ -32,4 +31,22 @@ module "eks" {
       desired_size = var.main_size.desired
     }
   }
+}
+
+module "vpc_cni_irsa" {
+
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  version = "~> 4.12"
+
+  role_name_prefix      = "vpc-cni-irsa-"
+
+  attach_load_balancer_controller_policy = true
+
+  oidc_providers = {
+    main = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:aws-node","aws-alb-ingress:aws-alb-ingress-controller"]
+    }
+  }
+
 }

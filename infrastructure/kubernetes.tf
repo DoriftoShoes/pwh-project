@@ -31,14 +31,24 @@ resource "helm_release" "alb_ingress" {
     value = "true"
   }
 
+  #set {
+  #  name  = "rbac.serviceAccount.create"
+  #  value = "true"
+  #}
+
+  #set {
+  #  name  = "rbac.serviceAccountAnnotations.eks\\.amazonaws\\.com/role-arn"
+  #  value = aws_iam_role.alb_ingress.arn
+  #}
+
   set {
-    name  = "rbac.serviceAccount.create"
+    name = "serviceAccount.create"
     value = "true"
   }
 
   set {
-    name  = "rbac.serviceAccountAnnotations.eks\\.amazonaws\\.com/role-arn"
-    value = aws_iam_role.alb_ingress.arn
+    name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+    value = module.vpc_cni_irsa.iam_role_arn
   }
 
   set {
