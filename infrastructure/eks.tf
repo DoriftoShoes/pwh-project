@@ -45,7 +45,7 @@ module "vpc_cni_irsa" {
   oidc_providers = {
     main = {
       provider_arn               = module.eks.oidc_provider_arn
-      namespace_service_accounts = ["kube-system:aws-node","aws-alb-ingress:aws-alb-ingress-controller"]
+      namespace_service_accounts = ["kube-system:aws-node","aws-alb-ingress:aws-alb-ingress-controller-aws-load-balancer-controller"]
     }
   }
 

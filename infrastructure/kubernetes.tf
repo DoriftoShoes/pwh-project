@@ -31,16 +31,6 @@ resource "helm_release" "alb_ingress" {
     value = "true"
   }
 
-  #set {
-  #  name  = "rbac.serviceAccount.create"
-  #  value = "true"
-  #}
-
-  #set {
-  #  name  = "rbac.serviceAccountAnnotations.eks\\.amazonaws\\.com/role-arn"
-  #  value = aws_iam_role.alb_ingress.arn
-  #}
-
   set {
     name = "serviceAccount.create"
     value = "true"
@@ -88,14 +78,14 @@ resource "kubernetes_deployment" "project" {
 
     selector {
       match_labels = {
-        test = var.cluster_name
+        app = var.cluster_name
       }
     }
 
     template {
       metadata {
         labels = {
-          test = var.cluster_name
+          app = var.cluster_name
         }
       }
 
@@ -112,6 +102,15 @@ resource "kubernetes_deployment" "project" {
             requests = {
               cpu    = "250m"
               memory = "50Mi"
+            }
+          }
+          port { 
+            container_port = 5000
+          }
+          liveness_probe {
+            http_get {
+              path = "/"
+              port = 5000
             }
           }
         }
