@@ -141,9 +141,15 @@ resource "kubernetes_service" "project" {
   }
 }
 
+resource "time_sleep" "wait_1_minute" {
+  depends_on = [helm_release.alb_ingress]
+
+  create_duration = "60s"
+}
+
 resource "kubernetes_ingress_v1" "project" {
     depends_on = [
-      helm_release.alb_ingress
+      time_sleep.wait_1_minute
     ]
   metadata {
     namespace = kubernetes_namespace.project.metadata.0.name

@@ -71,7 +71,7 @@ The following items are required to use this project.
 3. Update your tfvars file with all of your environment information
 4. Run `terraform plan --out=plan.out --var-file=YOUR_TFVARS_FILE`
 5. Verify plan looks correct
-6. Run `terraform apply --var-file=YOUR_TFVARS_FILE plan.out`
+6. Run `terraform apply plan.out`
 
 ### Destroying
 The following command will tear down the environment
