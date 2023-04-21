@@ -33,6 +33,7 @@
         <li><a href="#deployment">Deployment</a></li>
       </ul>
     </li>
+    <li><a href="#testing">Testing</a></li>
     <li><a href="#terraform">Terraform</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
