@@ -73,6 +73,16 @@ The following items are required to use this project.
 5. Verify plan looks correct
 6. Run `terraform apply plan.out`
 
+## Testing
+
+### Application
+
+#### Prerequisites
+
+### Infrastructure
+
+#### Prerequisites
+
 ### Destroying
 The following command will tear down the environment
 
