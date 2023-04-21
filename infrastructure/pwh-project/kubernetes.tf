@@ -14,6 +14,7 @@ resource "helm_release" "alb_ingress" {
   depends_on = [
     module.eks
   ]
+  count = var.deploy_app ? 1 : 0
   name       = "aws-alb-ingress-controller"
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
@@ -53,6 +54,7 @@ resource "helm_release" "alb_ingress" {
 }
 
 resource "kubernetes_namespace" "project" {
+  count = var.deploy_app ? 1 : 0
   depends_on = [
     module.eks
   ]
@@ -62,11 +64,12 @@ resource "kubernetes_namespace" "project" {
 }
 
 resource "kubernetes_deployment" "project" {
+  count = var.deploy_app ? 1 : 0
   depends_on = [
     module.eks
   ]
   metadata {
-    namespace = kubernetes_namespace.project.metadata.0.name
+    namespace = kubernetes_namespace.project.0.metadata.0.name
     name = var.cluster_name
     labels = {
       app = var.cluster_name
@@ -122,16 +125,17 @@ resource "kubernetes_deployment" "project" {
 
 
 resource "kubernetes_service" "project" {
+  count = var.deploy_app ? 1 : 0
   depends_on = [
     module.eks
   ]
   metadata {
-    namespace = kubernetes_namespace.project.metadata.0.name
+    namespace = kubernetes_namespace.project.0.metadata.0.name
     name = var.cluster_name
   }
   spec {
     selector = {
-      app =  kubernetes_deployment.project.metadata.0.labels.app
+      app =  kubernetes_deployment.project.0.metadata.0.labels.app
     }
     port {
       port        = 80
@@ -143,6 +147,7 @@ resource "kubernetes_service" "project" {
 }
 
 resource "time_sleep" "wait_1_minute" {
+  count = var.deploy_app ? 1 : 0
   depends_on = [
     helm_release.alb_ingress
   ]
@@ -151,12 +156,13 @@ resource "time_sleep" "wait_1_minute" {
 }
 
 resource "kubernetes_ingress_v1" "project" {
-    depends_on = [
-      kubernetes_service.project,
-      time_sleep.wait_1_minute
-    ]
+  count = var.deploy_app ? 1 : 0
+  depends_on = [
+    kubernetes_service.project,
+    time_sleep.wait_1_minute
+  ]
   metadata {
-    namespace = kubernetes_namespace.project.metadata.0.name
+    namespace = kubernetes_namespace.project.0.metadata.0.name
     name = var.cluster_name
     annotations = {
         "alb.ingress.kubernetes.io/scheme" = "internet-facing"
