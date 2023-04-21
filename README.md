@@ -57,9 +57,9 @@ Use the following steps to deploy t his project.
 The following items are required to use this project.
 
 * AWS Account
-* ECR Repository
-* AWS CLI Installed & Configured
-* Docker
+* [ECR Repository](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html)
+* AWS CLI [Installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) & [Configured](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
+* [Docker](https://docs.docker.com/get-docker/)
 
 ### Deployment
 
@@ -162,6 +162,7 @@ The following command will tear down the environment
 ## Contact
 
 Patrick Hoolboom - patrick@hoolboom.com
+[LinkedIn](https://linkedin.com/in/pwhoolboom)
 
 Project Link: [https://github.com/doriftoshoes/pwh-project](https://github.com/doriftoshoes/pwh-project)
 
