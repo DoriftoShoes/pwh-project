@@ -57,6 +57,7 @@ variable "main_size" {
 
 variable "project_image" {
     description = "Container image for deployment"
+    default = ""
 }
 
 variable "deploy_app" {
