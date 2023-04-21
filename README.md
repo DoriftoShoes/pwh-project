@@ -162,6 +162,7 @@ The following command will tear down the environment
 ## Contact
 
 Patrick Hoolboom - patrick@hoolboom.com
+
 [LinkedIn](https://linkedin.com/in/pwhoolboom)
 
 Project Link: [https://github.com/doriftoshoes/pwh-project](https://github.com/doriftoshoes/pwh-project)
