@@ -119,6 +119,8 @@ resource "kubernetes_deployment" "project" {
   }
 }
 
+
+
 resource "kubernetes_service" "project" {
   depends_on = [
     module.eks
@@ -131,7 +133,6 @@ resource "kubernetes_service" "project" {
     selector = {
       app =  kubernetes_deployment.project.metadata.0.labels.app
     }
-    session_affinity = "ClientIP"
     port {
       port        = 80
       target_port = 5000
@@ -142,20 +143,22 @@ resource "kubernetes_service" "project" {
 }
 
 resource "time_sleep" "wait_1_minute" {
-  depends_on = [helm_release.alb_ingress]
+  depends_on = [
+    helm_release.alb_ingress
+  ]
 
   create_duration = "60s"
 }
 
 resource "kubernetes_ingress_v1" "project" {
     depends_on = [
+      kubernetes_service.project,
       time_sleep.wait_1_minute
     ]
   metadata {
     namespace = kubernetes_namespace.project.metadata.0.name
     name = var.cluster_name
     annotations = {
-        #"kubernetes.io/ingress.class" = "alb"
         "alb.ingress.kubernetes.io/scheme" = "internet-facing"
         "alb.ingress.kubernetes.io/target-type" = "ip"
     }
@@ -187,10 +190,6 @@ resource "kubernetes_ingress_v1" "project" {
           path = "/"
         }
       }
-    }
-
-    tls {
-      secret_name = var.cluster_name
     }
   }
 }
