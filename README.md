@@ -73,16 +73,6 @@ The following items are required to use this project.
 5. Verify plan looks correct
 6. Run `terraform apply plan.out`
 
-## Testing
-
-### Application
-
-#### Prerequisites
-
-### Infrastructure
-
-#### Prerequisites
-
 ### Destroying
 The following command will tear down the environment
 
@@ -90,6 +80,25 @@ The following command will tear down the environment
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Testing
+
+### Application
+
+#### Prerequisites
+
+*
+*
+*
+
+### Infrastructure
+
+#### Prerequisites
+
+*
+*
+*
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 ## Terraform
 <!-- BEGIN_TF_DOCS -->
 ### Requirements
