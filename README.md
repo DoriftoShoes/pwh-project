@@ -86,9 +86,14 @@ The following command will tear down the environment
 
 #### Prerequisites
 
-*
-*
-*
+* pytest
+
+#### Running the Tests
+
+1. Change in to the app directory
+    1. `cd pwh-project/app`
+2. Run the tests
+    1. `python3 -m pytest tests`
 
 ### Infrastructure
 
