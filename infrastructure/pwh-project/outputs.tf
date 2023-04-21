@@ -79,8 +79,3 @@ output "eks_managed_node_groups" {
   description = "Map of attribute maps for all EKS managed node groups created"
   value       = module.eks.eks_managed_node_groups
 }
-
-output "load_balancer_hostname" {
-  description = "Hostname of the load balancer for the pwh-project Kubernetes service"
-  value = kubernetes_ingress_v1.project.status.0.load_balancer.0.ingress.0.hostname
-}
