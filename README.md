@@ -99,6 +99,7 @@ The following command will tear down the environment
 *
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Terraform
 <!-- BEGIN_TF_DOCS -->
 ### Requirements
