@@ -9,4 +9,5 @@ cluster_version = "" # Kubernetes version
 main_instance_types = [] # EC2 instance types to use in the main node group
 main_size = {min = 1, max = 1, desired = 1} # minimum, maximum, and desired number of instances in the main node group
 
+deploy_app = true
 project_image = "" # container image for the application
