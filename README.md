@@ -67,8 +67,8 @@ The following items are required to use this project.
     1. [Building a Docker image](https://docs.docker.com/engine/reference/commandline/build/)
     2. [Pushing a Docker image](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
     3. Get the image URI from the AWS console or CLI
-2. Copy the example.tfvars file
-3. Update your tfvars file with all of your environment information
+2. Copy the [example.tfvars](infrastructure/pwh-project/example.tfvars) file
+3. Update your tfvars file with all of your environment information (see <a href="#Inputs">table below</a> for descriptions of inputs)
 4. Run `terraform plan --out=plan.out --var-file=YOUR_TFVARS_FILE`
 5. Verify plan looks correct
 6. Run `terraform apply plan.out`
