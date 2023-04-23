@@ -21,7 +21,8 @@ module "eks" {
       iam_role_additional_policies = {
         1: "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess",
         2: "arn:aws:iam::aws:policy/AmazonVPCReadOnlyAccess",
-        3:"arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+        3: "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess",
+        4: "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
         }
 
       instance_types = var.main_instance_types
@@ -29,6 +30,8 @@ module "eks" {
       min_size     = var.main_size.min
       max_size     = var.main_size.max
       desired_size = var.main_size.desired
+
+      key_name = "ark_west_1"
     }
   }
 }

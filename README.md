@@ -51,7 +51,7 @@ This is a small project that utilizes Terraform to create an EKS cluster and dep
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Use the following steps to deploy t his project.
+Use the following steps to deploy this project.
 
 ### Prerequisites
 
@@ -87,7 +87,8 @@ The following command will tear down the environment
 
 #### Prerequisites
 
-* pytest
+* [pytest](https://docs.pytest.org/en/7.1.x/getting-started.html)
+* [Set Up Terratest](https://terratest.gruntwork.io/docs/getting-started/quick-start/)
 
 #### Running the Tests
 
@@ -100,9 +101,15 @@ The following command will tear down the environment
 
 #### Prerequisites
 
-*
-*
-*
+* [Go](https://go.dev/doc/install)
+* [Setup Terratest](https://terratest.gruntwork.io/docs/getting-started/quick-start/)
+
+#### Running the tests
+
+1. change in to the infrastructure tests directory
+    1. `cd pwh-project/infrastructure/tests`
+2. Run the tests
+    1. `go test -timeout 30m`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
