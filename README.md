@@ -74,6 +74,20 @@ The following items are required to use this project.
 5. Verify plan looks correct
 6. Run `terraform apply plan.out`
 
+### Validation
+1. Update your Kubeconfig
+    1. `aws eks update-kubeconfig --name PROJECT_NAME`
+2. Retrive the ingress endpoint
+    1. `kubectl -n PROJECT_NAME get ingress`
+3. Copy the ingress and pase it in to your broswer (or use curl/wget)
+    * You should see:
+```
+{
+  "message": "Automate all the things!",
+  "timestamp": 1682281296
+}
+```
+
 ### Destroying
 The following command will tear down the environment
 
