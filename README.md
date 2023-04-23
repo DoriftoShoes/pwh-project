@@ -88,7 +88,6 @@ The following command will tear down the environment
 #### Prerequisites
 
 * [pytest](https://docs.pytest.org/en/7.1.x/getting-started.html)
-* [Set Up Terratest](https://terratest.gruntwork.io/docs/getting-started/quick-start/)
 
 #### Running the Tests
 
