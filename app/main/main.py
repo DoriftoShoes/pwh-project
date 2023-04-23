@@ -8,7 +8,7 @@ app = Flask(__name__)
 def interview():
     output = {}
     output["message"] = "Automate all the things!"
-    output["timestamp"] = time.time()
+    output["timestamp"] = round(time.time())
 
 
     return json.dumps(output)
