@@ -22,7 +22,7 @@ output "private_subnet_ids" {
 # EKS
 output "load_balancer_role_arn" {
   description = "ARN of the IAM role used by the load balancer controller"
-  value = module.vpc_cni_irsa.iam_role_arn
+  value = module.lb_irsa.iam_role_arn
 }
 
 output "eks_cluster_arn" {

@@ -39,7 +39,7 @@ resource "helm_release" "alb_ingress" {
 
   set {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = module.vpc_cni_irsa.iam_role_arn
+    value = module.lb_irsa.iam_role_arn
   }
 
   set {

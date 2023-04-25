@@ -26,12 +26,12 @@ module "eks" {
   }
 }
 
-module "vpc_cni_irsa" {
+module "lb_irsa" {
 
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 4.12"
 
-  role_name_prefix      = "vpc-cni-irsa-"
+  role_name_prefix      = "lb-irsa-"
 
   attach_load_balancer_controller_policy = true
 
