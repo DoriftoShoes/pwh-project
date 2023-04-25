@@ -79,7 +79,7 @@ The following items are required to use this project.
     1. `aws eks update-kubeconfig --name PROJECT_NAME`
 2. Retrive the ingress endpoint
     1. `kubectl -n PROJECT_NAME get ingress`
-3. Copy the ingress and pase it in to your broswer (or use curl/wget)
+3. Copy the ingress address and pase it in to your browser (or use curl/wget)
     * You should see:
 ```
 {
@@ -227,4 +227,5 @@ Project Link: [https://github.com/doriftoshoes/pwh-project](https://github.com/d
 [issues-url]: https://github.com/doriftoshoes/pwh-project/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/pwhoolboom
-[product-screenshot]: images/screenshot.png
+
+<!-- https://github.com/othneildrew/Best-README-Template -->
